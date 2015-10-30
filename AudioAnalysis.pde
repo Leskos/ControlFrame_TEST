@@ -6,7 +6,7 @@ BeatDetect beat;        // Beat detection
 
 
 // Audio analysis parameters
-int   numZones         = 9;      
+int   numZones         = 20;      
 int   sampleRate       = 44100;
 int   bufferSize       = 512;
 int   minBassThreshold = 10;
@@ -14,6 +14,7 @@ int   minMidThreshold  = 2;
 float minTrebThreshold = 0.4;
 
 float[] audioFreqs;
+
 
 void initAudioAnalysis( Object mainApplet )
 {

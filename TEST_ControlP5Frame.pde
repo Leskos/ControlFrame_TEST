@@ -26,7 +26,7 @@ void setup()
   
   initAudioAnalysis( this );
   
-  cf = addControlFrame("Control Window", 1000,200);
+  cf = addControlFrame("Control Window", 480,200);
   
   // add Controllers to the 'extra' Frame inside 
   // the ControlFrame class setup() method below.

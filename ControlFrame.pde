@@ -7,7 +7,7 @@ ControlFrame addControlFrame(String theName, int theWidth, int theHeight)
   p.init();
   f.setTitle(theName);
   f.setSize(p.w, p.h);
-  f.setLocation( -1000, 0 );  // Set location of frame here
+  f.setLocation( 0, 0 );  // Set location of frame here
   f.setResizable(true);
   f.setVisible(true);
   return p;
