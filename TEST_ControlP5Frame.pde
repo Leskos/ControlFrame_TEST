@@ -23,7 +23,7 @@ void setup()
   
   initAudioAnalysis( this );
   
-  cf = addControlFrame("Control Window", 480,800);
+  cf = addControlFrame("Control Window", 480,315);
 }
 
 

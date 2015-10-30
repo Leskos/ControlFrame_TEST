@@ -18,16 +18,20 @@ ControlFrame addControlFrame(String theName, int theWidth, int theHeight)
 
 void updateAudioSliders()
 { 
-  String controllerName;
-  for( int i=0; i<numZones; i++ )
-  {
-    controllerName = "freq" + (i+1);
-    cf.control().getController( controllerName ).setValue( audioFreqs[i] );
+  if( frameCount > 5 )     // Workaround for null pointer error when ControlFrame's
+  {                        // setup() function runs after main sketch's
+    String controllerName;
+    for( int i=0; i<numZones; i++ )
+    {
+      controllerName = "freq" + (i+1);
+      cf.control().getController( controllerName ).setValue( audioFreqs[i] );
+    }
+    
+    cf.control().getController( "Bass" ).setValue( bassLevel );
+    cf.control().getController( "Mid" ).setValue( midLevel );
+    cf.control().getController( "Treb" ).setValue( trebLevel );
   }
   
-  cf.control().getController( "Bass" ).setValue( bassLevel );
-  cf.control().getController( "Mid" ).setValue( midLevel );
-  cf.control().getController( "Treb" ).setValue( trebLevel );
 }
 
 
@@ -93,7 +97,7 @@ public class ControlFrame extends PApplet
     cp5.addSlider( "masterGain" )
      .setPosition( uiX ,uiY )
      .setSize(200,20)
-     .setRange( 0, 3 )
+     .setRange( 0, 5 )
      .plugTo(parent, "audioGain")
      .setDefaultValue(1f)
      .setValue(1f)

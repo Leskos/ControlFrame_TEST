@@ -90,8 +90,6 @@ void doAudioAnalysis()
     {
       audioFreqs[i] = avg * masterGain;
     }
-   
-    //println("Audio gain : " + audioGain ); 
   } 
   
   bassLevel = audioFreqs[0] + audioFreqs[1] + audioFreqs[2];
@@ -106,7 +104,7 @@ void doAudioAnalysis()
   midLevel  *= trebGain; // Applying gain
   trebLevel *= trebGain; // Applying gain
   
-  bassLevel = constrain( bassLevel, 0, 100 ) / 100;
-  midLevel  = constrain( midLevel,  0, 100 ) / 100;
-  trebLevel = constrain( trebLevel, 0, 100 ) / 100;
+  bassLevel = constrain( bassLevel, 0, 100 ) / 100;  // Normalising 0-1
+  midLevel  = constrain( midLevel,  0, 100 ) / 100;  // Normalising 0-1
+  trebLevel = constrain( trebLevel, 0, 100 ) / 100;  // Normalising 0-1
 }
