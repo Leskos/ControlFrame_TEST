@@ -61,8 +61,6 @@ public class ControlFrame extends PApplet
     {
       sliderName = "freq" + (i+1);
       
-      //println("Adding controller : " + sliderName);
-      
       cp5.addSlider( sliderName )
      .setPosition( uiX + (i*50),uiY )
      .setSize(20,100)
@@ -134,7 +132,16 @@ public class ControlFrame extends PApplet
      .setValue(1f)
     ;
     
+    uiY += 30;
     
+    cp5.addSlider( "Easing" )
+     .setPosition( uiX ,uiY )
+     .setSize(200,20)
+     .setRange( 0.6, 0.01 )
+     .plugTo(parent, "audioEaseDown")
+     .setDefaultValue(0.1f)
+     .setValue(0.1f)
+    ;
   }
 
   public void draw() 

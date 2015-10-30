@@ -22,11 +22,12 @@ float masterGain    = 1.0;
 float bassGain      = 1.0;
 float midGain       = 1.0;
 float trebGain      = 1.0;
-float audioEaseDown = 1.0; 
 
 float bassLevel;
 float midLevel;
 float trebLevel;
+
+float audioEaseDown = 0.1f;
 
 void initAudioAnalysis( Object mainApplet )
 {
@@ -77,7 +78,18 @@ void doAudioAnalysis()
     }
 
     avg /= (hiBound - lowBound + 1);
-    audioFreqs[i] = avg * masterGain;
+    
+    float prevVal = audioFreqs[i];
+    float newVal  = avg * masterGain;
+    
+    if( newVal < prevVal )
+    {
+      audioFreqs[i] += (newVal - prevVal) * audioEaseDown;
+    }
+    else
+    {
+      audioFreqs[i] = avg * masterGain;
+    }
    
     //println("Audio gain : " + audioGain ); 
   } 
