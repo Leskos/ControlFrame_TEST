@@ -1,4 +1,7 @@
 
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+
 Minim      minim;       // Minim audio library
 AudioInput audioIn;     // Audio input
 FFT        fft;         // Frequency analysis
@@ -15,6 +18,15 @@ float minTrebThreshold = 0.4;
 
 float[] audioFreqs;
 
+float masterGain    = 1.0;
+float bassGain      = 1.0;
+float midGain       = 1.0;
+float trebGain      = 1.0;
+float audioEaseDown = 1.0; 
+
+float bassLevel;
+float midLevel;
+float trebLevel;
 
 void initAudioAnalysis( Object mainApplet )
 {
@@ -65,6 +77,24 @@ void doAudioAnalysis()
     }
 
     avg /= (hiBound - lowBound + 1);
-    audioFreqs[i] = avg; 
+    audioFreqs[i] = avg * masterGain;
+   
+    //println("Audio gain : " + audioGain ); 
   } 
+  
+  bassLevel = audioFreqs[0] + audioFreqs[1] + audioFreqs[2];
+  midLevel  = audioFreqs[3] + audioFreqs[4] + audioFreqs[5];
+  trebLevel = audioFreqs[6] + audioFreqs[7] + audioFreqs[8]; 
+  
+  bassLevel *= 0.5;      // Arbitrary pre-scaling 
+  midLevel  *= 1.5;      // Arbitrary pre-scaling
+  trebLevel *= 7;        // Arbitrary pre-scaling
+  
+  bassLevel *= bassGain; // Applying gain
+  midLevel  *= trebGain; // Applying gain
+  trebLevel *= trebGain; // Applying gain
+  
+  bassLevel = constrain( bassLevel, 0, 100 ) / 100;
+  midLevel  = constrain( midLevel,  0, 100 ) / 100;
+  trebLevel = constrain( trebLevel, 0, 100 ) / 100;
 }

@@ -9,11 +9,8 @@
  * www.sojamo.de/libraries/controlp5
  *
  */
+ 
 import controlP5.*;
-import java.awt.Frame;
-import java.awt.BorderLayout;
-import ddf.minim.*;
-import ddf.minim.analysis.*;
 
 private ControlP5 cp5main;
 ControlFrame      cf;
@@ -26,21 +23,13 @@ void setup()
   
   initAudioAnalysis( this );
   
-  cf = addControlFrame("Control Window", 480,200);
-  
-  // add Controllers to the 'extra' Frame inside 
-  // the ControlFrame class setup() method below.
-  //cf.control().addSlider("abc").setRange(0, 255).setPosition(10,10);
-  //cf.control().addSlider("def").plugTo(cf.parent,"def").setRange(0, 255).setPosition(10,30);
-  
+  cf = addControlFrame("Control Window", 480,800);
 }
+
 
 void draw() 
 {
-  
   doAudioAnalysis();
-  
-  
   updateAudioSliders();
 }
 

@@ -1,3 +1,5 @@
+import java.awt.Frame;
+import java.awt.BorderLayout;
 
 ControlFrame addControlFrame(String theName, int theWidth, int theHeight) 
 {
@@ -22,6 +24,10 @@ void updateAudioSliders()
     controllerName = "freq" + (i+1);
     cf.control().getController( controllerName ).setValue( audioFreqs[i] );
   }
+  
+  cf.control().getController( "Bass" ).setValue( bassLevel );
+  cf.control().getController( "Mid" ).setValue( midLevel );
+  cf.control().getController( "Treb" ).setValue( trebLevel );
 }
 
 
@@ -62,7 +68,73 @@ public class ControlFrame extends PApplet
      .setSize(20,100)
      .setRange( freqMin, freqMax )
      ;
-    }    
+    }
+    
+    uiY += 120;
+    
+    cp5.addSlider( "Bass" )
+     .setPosition( uiX + 270 ,uiY )
+     .setSize(30,100)
+     .setRange( 0, 1 )
+     ;
+    
+    cp5.addSlider( "Mid" )
+     .setPosition( uiX + 330 ,uiY )
+     .setSize(30,100)
+     .setRange( 0, 1 )
+     ;
+     
+    cp5.addSlider( "Treb" )
+     .setPosition( uiX + 390 ,uiY )
+     .setSize(30,100)
+     .setRange( 0, 1 )
+     ; 
+    
+    uiY +=5;
+    
+    cp5.addSlider( "masterGain" )
+     .setPosition( uiX ,uiY )
+     .setSize(200,20)
+     .setRange( 0, 3 )
+     .plugTo(parent, "audioGain")
+     .setDefaultValue(1f)
+     .setValue(1f)
+    ;
+    
+    uiY += 25;
+    
+    cp5.addSlider( "bassGain" )
+     .setPosition( uiX ,uiY )
+     .setSize(200,20)
+     .setRange( 0, 3 )
+     .plugTo(parent, "bassGain")
+     .setDefaultValue(1f)
+     .setValue(1f)
+    ;
+    
+    uiY += 25;
+    
+    cp5.addSlider( "midGain" )
+     .setPosition( uiX ,uiY )
+     .setSize(200,20)
+     .setRange( 0, 3 )
+     .plugTo(parent, "midGain")
+     .setDefaultValue(1f)
+     .setValue(1f)
+    ;
+    
+    uiY += 25;
+    
+    cp5.addSlider( "trebGain" )
+     .setPosition( uiX ,uiY )
+     .setSize(200,20)
+     .setRange( 0, 3 )
+     .plugTo(parent, "trebGain")
+     .setDefaultValue(1f)
+     .setValue(1f)
+    ;
+    
+    
   }
 
   public void draw() 
